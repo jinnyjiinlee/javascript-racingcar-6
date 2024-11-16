@@ -1,4 +1,3 @@
-import { ParseCarNames } from '../model/parseCarNames.js';
 import { Input } from '../View/inputViews.js';
 
 export class MainController {
@@ -6,10 +5,13 @@ export class MainController {
     this.input = new Input();
   }
   async startProgram() {
-    const carNamesInput = await this.input.getCarNamesInput();
-    const parsedCarNames = new ParseCarNames().parseCarNames(carNamesInput);
-    console.log(parsedCarNames);
+    const carNamesInput = await this.input.getValidatedCarNamesInput();
 
     // await this.input.getMatchCountInput();
   }
 }
+
+
+
+
+
