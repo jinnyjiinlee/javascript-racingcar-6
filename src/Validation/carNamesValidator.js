@@ -1,12 +1,12 @@
 import { ERRORS } from '../Constants/errorMessages.js';
-import { ParseCarNames } from '../model/parseCarNames.js';
+import { CarNamesParser } from '../model/parseCarNames.js';
 
 export class CarNamesValidator {
   validateCarNames(carNamesInput) {
     this.carNamesInput = carNamesInput;
 
     this.parseCarNames();
-    const validationRules = this.getValidationRules();
+    const validationRules = this.getValidationChecks();
 
     validationRules.forEach((arr) => {
       if (arr[0]) throw new Error(arr[1]);
@@ -16,30 +16,26 @@ export class CarNamesValidator {
   }
 
   parseCarNames() {
-    this.parseCarNames = new ParseCarNames().parseCarNames(this.carNamesInput);
+    this.parseCarNames = new CarNamesParser().parseCarNames(this.carNamesInput);
   }
 
-  isValidEmptyInput() {
+  isNotEmpty() {
     return this.carNamesInput !== '';
   }
 
   // TODO: 정리해서 공부하기
-  isValidNoNumber() {
-    return this.parseCarNames.every((carName) => {
-      return isNaN(Number(carName));
-    });
+  hasNoNumbers() {
+    return this.parseCarNames.every((carName) => isNaN(Number(carName)));
   }
 
   isValidLength() {
-    this.parseCarNames.every((carName) => {
-      return carName.length <= 5;
-    });
+    return this.parseCarNames.every((carName) => carName.length <= 5);
   }
 
-  getValidationRules() {
+  getValidationChecks() {
     return [
-      [!this.isValidEmptyInput(), ERRORS.NO_INPUT],
-      [!this.isValidNoNumber(), ERRORS.NUMBER_INPUT],
+      [!this.isNotEmpty(), ERRORS.NO_INPUT],
+      [!this.hasNoNumbers(), ERRORS.NUMBER_INPUT],
       [!this.isValidLength(), ERRORS.LENGTH_EXCEEDED],
     ];
   }

@@ -1,6 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 import { INPUT_MESSAGES } from '../Constants/messages.js';
 import { CarNamesValidator } from '../Validation/carNamesValidator.js';
+import { RacingCountValidator } from '../Validation/racingCountValidator.js';
 
 export class Input {
   async getValidatedCarNamesInput() {
@@ -8,7 +9,6 @@ export class Input {
       try {
         await this.getCarNamesInput();
         new CarNamesValidator().validateCarNames(this.carNamesInput);
-
         return this.carNamesInput;
       } catch (e) {
         Console.print(e.message);
@@ -20,7 +20,19 @@ export class Input {
     this.carNamesInput = await Console.readLineAsync(INPUT_MESSAGES.CAR_NAMES);
   }
 
-  async getMatchCountInput() {
-    await Console.readLineAsync(INPUT_MESSAGES.MATCH_COUNT);
+  async getValidatedRacingCountInput() {
+    while (true) {
+      try {
+        await this.getRacingCountInput();
+        new RacingCountValidator().validateRacingCount(this.racingCount);
+        return this.racingCount;
+      } catch (e) {
+        Console.print(e.message);
+      }
+    }
+  }
+
+  async getRacingCountInput() {
+    this.racingCount = await Console.readLineAsync(INPUT_MESSAGES.RACING_COUNT);
   }
 }

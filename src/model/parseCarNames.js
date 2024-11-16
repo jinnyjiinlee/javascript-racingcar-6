@@ -1,4 +1,4 @@
-export class ParseCarNames {
+export class CarNamesParser {
   constructor() {}
 
   parseCarNames(carNamesInput) {
