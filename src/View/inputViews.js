@@ -3,7 +3,7 @@ import { INPUT_MESSAGES } from '../Constants/messages.js';
 
 export class Input {
   async getCarNamesInput() {
-    await Console.readLineAsync(INPUT_MESSAGES.CAR_NAMES);
+    return await Console.readLineAsync(INPUT_MESSAGES.CAR_NAMES);
   }
 
   async getMatchCountInput() {
