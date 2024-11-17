@@ -1,4 +1,4 @@
-import { Random } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 
 export const progressRacing = (carNames, racingCount) => {
   const racingProgression = [];
@@ -6,7 +6,7 @@ export const progressRacing = (carNames, racingCount) => {
   for (const i in carNames) {
     racingProgression[i] = 0;
   }
-  console.log('\n실행결과');
+  Console.print('\n실행결과');
 
   for (let i = 0; i < racingCount; i += 1) {
     for (const i in carNames) {
@@ -17,8 +17,25 @@ export const progressRacing = (carNames, racingCount) => {
     }
 
     for (const i in carNames) {
-      console.log(`${carNames[i]} : ${'-'.repeat(racingProgression[i])}`);
+      Console.print(`${carNames[i]} : ${'-'.repeat(racingProgression[i])}`);
     }
-    console.log('');
+    Console.print('');
   }
+
+  const MaxNumber = Math.max(...racingProgression);
+
+  const findIndexArray = racingProgression
+    .map((item, index) => {
+      if (item === MaxNumber) return index;
+      else return -1;
+    })
+    .filter((item) => item !== -1);
+
+  const finalWinners = [];
+
+  for (let i = 0; i < findIndexArray.length; i += 1) {
+    finalWinners.push(carNames[findIndexArray[i]]);
+  }
+
+  Console.print(`최종 우승자 : ${finalWinners}`);
 };
