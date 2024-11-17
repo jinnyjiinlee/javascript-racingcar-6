@@ -1,5 +1,5 @@
 import { ERRORS } from '../Constants/errorMessages.js';
-import { CarNamesParser } from '../model/parseCarNames.js';
+import { CarNamesParser } from '../Model/carNamesParser.js';
 
 export class CarNamesValidator {
   validateCarNames(carNamesInput) {
@@ -8,8 +8,8 @@ export class CarNamesValidator {
     this.parseCarNames();
     const validationRules = this.getValidationChecks();
 
-    validationRules.forEach((arr) => {
-      if (arr[0]) throw new Error(arr[1]);
+    validationRules.forEach((ele) => {
+      if (ele[0]) throw new Error(ele[1]);
     });
 
     return true;

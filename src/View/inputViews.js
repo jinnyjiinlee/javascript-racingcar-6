@@ -25,7 +25,7 @@ export class Input {
       try {
         await this.getRacingCountInput();
         new RacingCountValidator().validateRacingCount(this.racingCount);
-        return this.racingCount;
+        return Number(this.racingCount);
       } catch (e) {
         Console.print(e.message);
       }

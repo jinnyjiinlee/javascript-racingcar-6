@@ -1,3 +1,5 @@
+import { CarNamesParser } from '../Model/carNamesParser.js';
+import { progressRacing } from '../Model/forwardProgression.js';
 import { Input } from '../View/inputViews.js';
 
 export class MainController {
@@ -6,7 +8,10 @@ export class MainController {
   }
 
   async startProgram() {
-    await this.input.getValidatedCarNamesInput();
-    await this.input.getValidatedRacingCountInput();
+    const carNamesInput = await this.input.getValidatedCarNamesInput();
+    const carNames = new CarNamesParser().parseCarNames(carNamesInput);
+    const racingCount = await this.input.getValidatedRacingCountInput();
+
+    progressRacing(carNames, racingCount);
   }
 }
