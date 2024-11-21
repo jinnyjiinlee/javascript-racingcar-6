@@ -1,26 +1,26 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 import { MESSAGE } from '../Constants/messages.js';
+import { printFinalWinners } from '../View/outputView.js';
 
-export class racingHandler {
-  progressRacing = (carNames, racingCount) => {
+export class RacingHandler {
+  startRace = (carNames, racingCount) => {
     this.carNames = carNames;
     this.racingCount = racingCount;
-    this.initializeRacingProgression();
-    this.MakeRandomNumberAndProgress();
-    this.printExecutionResult();
-    this.getIndexOfMaxValue();
-    this.MakeRandomNumberAndProgress();
-    this.printFinalWinner();
+    this.resetRaceProgress();
+    this.moveCars();
+    this.printRaceStatus();
+    this.findWinners();
+    printFinalWinners(this.carNames, this.findIndexArray);
   };
 
-  initializeRacingProgression() {
+  resetRaceProgress() {
     this.racingProgression = [];
     for (const i in this.carNames) {
       this.racingProgression[i] = 0;
     }
   }
 
-  MakeRandomNumberAndProgress() {
+  moveCars() {
     for (let i = 0; i < this.racingCount; i += 1) {
       for (const i in this.carNames) {
         const randomNumber = Random.pickNumberInRange(0, 9);
@@ -31,7 +31,7 @@ export class racingHandler {
     }
   }
 
-  printExecutionResult() {
+  printRaceStatus() {
     Console.print(MESSAGE.EXECUTION_RESULT);
     for (const i in this.carNames) {
       Console.print(
@@ -41,7 +41,7 @@ export class racingHandler {
     Console.print('');
   }
 
-  getIndexOfMaxValue() {
+  findWinners() {
     const MaxNumber = Math.max(...this.racingProgression);
 
     this.findIndexArray = this.racingProgression
@@ -50,15 +50,5 @@ export class racingHandler {
         else return -1;
       })
       .filter((item) => item !== -1);
-  }
-
-  printFinalWinner() {
-    const finalWinners = [];
-
-    for (let i = 0; i < this.findIndexArray.length; i += 1) {
-      finalWinners.push(this.carNames[this.findIndexArray[i]]);
-    }
-
-    Console.print(`${MESSAGE.FINAL_WINNER} : ${finalWinners}`);
   }
 }
