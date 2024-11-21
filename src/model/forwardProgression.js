@@ -1,16 +1,14 @@
 import { Random } from '@woowacourse/mission-utils';
-import { printFinalWinners, printRaceStatus } from '../View/outputView.js';
 
 export class RacingHandler {
-  startRace = (carNames, racingCount) => {
+  runRace(carNames, racingCount) {
     this.carNames = carNames;
     this.racingCount = racingCount;
     this.resetRaceProgress();
     this.moveCars();
-    printRaceStatus(this.carNames, this.racingProgression);
-    this.findWinners();
-    printFinalWinners(this.carNames, this.findIndexArray);
-  };
+
+    return this.racingProgression;
+  }
 
   resetRaceProgress() {
     this.racingProgression = [];
@@ -28,16 +26,5 @@ export class RacingHandler {
         }
       }
     }
-  }
-
-  findWinners() {
-    const MaxNumber = Math.max(...this.racingProgression);
-
-    this.findIndexArray = this.racingProgression
-      .map((item, index) => {
-        if (item === MaxNumber) return index;
-        else return -1;
-      })
-      .filter((item) => item !== -1);
   }
 }
