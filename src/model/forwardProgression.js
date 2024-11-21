@@ -1,6 +1,5 @@
-import { Console, Random } from '@woowacourse/mission-utils';
-import { MESSAGE } from '../Constants/messages.js';
-import { printFinalWinners } from '../View/outputView.js';
+import { Random } from '@woowacourse/mission-utils';
+import { printFinalWinners, printRaceStatus } from '../View/outputView.js';
 
 export class RacingHandler {
   startRace = (carNames, racingCount) => {
@@ -8,7 +7,7 @@ export class RacingHandler {
     this.racingCount = racingCount;
     this.resetRaceProgress();
     this.moveCars();
-    this.printRaceStatus();
+    printRaceStatus(this.carNames, this.racingProgression);
     this.findWinners();
     printFinalWinners(this.carNames, this.findIndexArray);
   };
@@ -29,16 +28,6 @@ export class RacingHandler {
         }
       }
     }
-  }
-
-  printRaceStatus() {
-    Console.print(MESSAGE.EXECUTION_RESULT);
-    for (const i in this.carNames) {
-      Console.print(
-        `${this.carNames[i]} : ${'-'.repeat(this.racingProgression[i])}`
-      );
-    }
-    Console.print('');
   }
 
   findWinners() {

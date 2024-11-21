@@ -1,6 +1,14 @@
 import { Console } from '@woowacourse/mission-utils';
 import { MESSAGE } from '../Constants/messages.js';
 
+export const printRaceStatus = (carNames, racingProgression) => {
+  Console.print(MESSAGE.EXECUTION_RESULT);
+  for (const i in carNames) {
+    Console.print(`${carNames[i]} : ${'-'.repeat(racingProgression[i])}`);
+  }
+  Console.print('');
+};
+
 export const printFinalWinners = (carNames, findIndexArray) => {
   const finalWinners = [];
 
