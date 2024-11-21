@@ -15,13 +15,13 @@ export class CarNamesValidator {
   //   return this.parseCarNames === '';
   // }
 
-  // TODO: 정리해서 공부하기
+  // TODO: 정리해서 공부하기 every 가 아니라 some
   hasNumbers() {
-    return this.parseCarNames.every((carName) => !isNaN(Number(carName)));
+    return this.parseCarNames.some((carName) => !isNaN(Number(carName)));
   }
 
   isValidLength() {
-    return this.parseCarNames.every((carName) => carName.length > 5);
+    return this.parseCarNames.some((carName) => carName.length > 5);
   }
 
   getValidationChecks() {
