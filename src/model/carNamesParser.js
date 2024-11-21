@@ -1,12 +1,3 @@
-export class CarNamesParser {
-  parseCarNames(carNamesInput) {
-    this.carNames = carNamesInput;
-    this.splitComma();
-    return this.trimCommaSplit;
-  }
-
-  splitComma() {
-    const commaSplit = this.carNames.split(',');
-    this.trimCommaSplit = commaSplit.map((carName) => carName.trim());
-  }
+export const parseCarNames = (carNames) => {
+  return carNames.split(',').map((carName) => carName.trim());
 }
