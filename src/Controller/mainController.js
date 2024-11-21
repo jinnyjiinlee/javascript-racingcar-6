@@ -4,11 +4,12 @@ import { parseCarNames } from '../Model/carNamesParser.js';
 import { RacingCountValidator } from '../Validation/racingCountValidator.js';
 import { RacingHandler } from '../Model/forwardProgression.js';
 import { findWinners } from '../Model/winnerFinding.js';
-import { printFinalWinners, printRaceStatus } from '../View/outputView.js';
+import { Output } from '../View/outputView.js';
 
 export class MainController {
   constructor() {
     this.input = new Input();
+    this.output = new Output();
   }
 
   async initializeProgram() {
@@ -22,7 +23,7 @@ export class MainController {
     const raceStatus = new RacingHandler().runRace(parsedCarNames, racingCount);
     const findIndexArray = findWinners(raceStatus);
 
-    printRaceStatus(parsedCarNames, raceStatus);
-    printFinalWinners(parsedCarNames, findIndexArray);
+    this.output.printRaceStatus(parsedCarNames, raceStatus);
+    this.output.printFinalWinners(parsedCarNames, findIndexArray);
   }
 }
