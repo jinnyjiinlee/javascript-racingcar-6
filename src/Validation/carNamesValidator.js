@@ -1,9 +1,9 @@
 import { ERRORS } from '../Constants/errorMessages.js';
-import { CarNamesParser } from '../Model/carNamesParser.js';
+import { parseCarNames } from '../Model/carNamesParser.js';
 
 export class CarNamesValidator {
   getParseCarNames() {
-    this.parseCarNames = new CarNamesParser().parseCarNames(this.carNamesInput);
+    this.parseCarNames = parseCarNames(this.carNamesInput);
   }
 
   // TODO: 트러블 슈팅 정리
@@ -17,7 +17,7 @@ export class CarNamesValidator {
 
   // TODO: 정리해서 공부하기 every 가 아니라 some
   hasNumbers() {
-    return this.parseCarNames.some((carName) => !Number(isNaN.carName));
+    return this.parseCarNames.some((carName) => !isNaN(Number(carName)));
   }
 
   isValidLength() {
