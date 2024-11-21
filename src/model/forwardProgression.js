@@ -4,44 +4,18 @@ export class racingHandler {
   progressRacing = (carNames, racingCount) => {
     this.carNames = carNames;
     this.racingCount = racingCount;
-
-    this.racingProgression = [];
-
-    this.Initialization();
-
-    Console.print('\n실행결과');
-
+    this.initializeRacingProgression();
     this.MakeRandomNumberAndProgress();
-
-    for (const i in this.carNames) {
-      Console.print(
-        `${this.carNames[i]} : ${'-'.repeat(this.racingProgression[i])}`
-      );
-    }
-    Console.print('');
-
-    const MaxNumber = Math.max(...this.racingProgression);
-
-    const findIndexArray = this.racingProgression
-      .map((item, index) => {
-        if (item === MaxNumber) return index;
-        else return -1;
-      })
-      .filter((item) => item !== -1);
-
-    const finalWinners = [];
-
-    for (let i = 0; i < findIndexArray.length; i += 1) {
-      finalWinners.push(this.carNames[findIndexArray[i]]);
-    }
-
-    Console.print(`최종 우승자 : ${finalWinners}`);
+    this.printExecutionResult();
+    this.getIndexOfMaxValue();
+    this.MakeRandomNumberAndProgress();
+    this.printFinalWinner();
   };
 
-  Initialization() {
-    // 0으로 초기화
+  initializeRacingProgression() {
+    this.racingProgression = [];
     for (const i in this.carNames) {
-      console.log()
+      console.log();
       this.racingProgression[i] = 0;
     }
   }
@@ -58,5 +32,36 @@ export class racingHandler {
         }
       }
     }
+  }
+
+  printExecutionResult() {
+    Console.print('\n실행결과');
+    for (const i in this.carNames) {
+      Console.print(
+        `${this.carNames[i]} : ${'-'.repeat(this.racingProgression[i])}`
+      );
+    }
+    Console.print('');
+  }
+
+  getIndexOfMaxValue() {
+    const MaxNumber = Math.max(...this.racingProgression);
+
+    const findIndexArray = this.racingProgression
+      .map((item, index) => {
+        if (item === MaxNumber) return index;
+        else return -1;
+      })
+      .filter((item) => item !== -1);
+  }
+
+  printFinalWinner() {
+    const finalWinners = [];
+
+    for (let i = 0; i < findIndexArray.length; i += 1) {
+      finalWinners.push(this.carNames[findIndexArray[i]]);
+    }
+
+    Console.print(`최종 우승자 : ${finalWinners}`);
   }
 }
