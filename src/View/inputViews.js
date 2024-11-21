@@ -1,7 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
 import { INPUT_MESSAGES } from '../Constants/messages.js';
-import { CarNamesValidator } from '../Validation/carNamesValidator.js';
-import { RacingCountValidator } from '../Validation/racingCountValidator.js';
 
 export class Input {
   async getCarNamesInput() {

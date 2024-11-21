@@ -1,8 +1,8 @@
-import { CarNamesParser } from '../Model/carNamesParser.js';
-import { racingHandler } from '../Model/forwardProgression.js';
-import { CarNamesValidator } from '../Validation/carNamesValidator.js';
-import { RacingCountValidator } from '../Validation/racingCountValidator.js';
 import { Input } from '../View/inputViews.js';
+import { CarNamesValidator } from '../Validation/carNamesValidator.js';
+import { CarNamesParser } from '../Model/carNamesParser.js';
+import { RacingCountValidator } from '../Validation/racingCountValidator.js';
+import { racingHandler } from '../Model/forwardProgression.js';
 
 export class MainController {
   constructor() {

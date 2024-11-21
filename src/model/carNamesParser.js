@@ -1,6 +1,4 @@
 export class CarNamesParser {
-  constructor() {}
-
   parseCarNames(carNamesInput) {
     this.carNames = carNamesInput;
     this.splitComma();
@@ -12,5 +10,3 @@ export class CarNamesParser {
     this.trimCommaSplit = commaSplit.map((carName) => carName.trim());
   }
 }
-
-
