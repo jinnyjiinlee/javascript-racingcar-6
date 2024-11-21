@@ -17,11 +17,20 @@ export class CarNamesValidator {
 
   // TODO: 정리해서 공부하기 every 가 아니라 some
   hasNumbers() {
-    return this.parseCarNames.some((carName) => !isNaN(Number(carName)));
+    return this.parseCarNames.some((carName) => !Number(isNaN.carName));
   }
 
   isValidLength() {
     return this.parseCarNames.some((carName) => carName.length > 5);
+  }
+
+  // TODO: ==! 이걸로해서 안됨 !==로 변경
+  isDuplicatedName() {
+    const set = new Set(this.parseCarNames);
+
+    if (this.parseCarNames.length !== set.size) {
+      return true;
+    }
   }
 
   getValidationChecks() {
@@ -29,6 +38,7 @@ export class CarNamesValidator {
       [this.isEmpty(), ERRORS.NO_INPUT],
       [this.hasNumbers(), ERRORS.NUMBER_INPUT],
       [this.isValidLength(), ERRORS.LENGTH_EXCEEDED],
+      [this.isDuplicatedName(), ERRORS.DUPLICATION],
     ];
   }
 
