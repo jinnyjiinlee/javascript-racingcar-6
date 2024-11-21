@@ -2,25 +2,12 @@ import { ERRORS } from '../Constants/errorMessages.js';
 import { CarNamesParser } from '../Model/carNamesParser.js';
 
 export class CarNamesValidator {
-  validateCarNames(carNamesInput) {
-    this.carNamesInput = carNamesInput;
-
-    this.parseCarNames();
-    const validationRules = this.getValidationChecks();
-
-    validationRules.forEach((ele) => {
-      if (ele[0]) throw new Error(ele[1]);
-    });
-
-    return true;
-  }
-
-  parseCarNames() {
+  getParseCarNames() {
     this.parseCarNames = new CarNamesParser().parseCarNames(this.carNamesInput);
   }
 
   isNotEmpty() {
-    return this.carNamesInput !== '';
+    return this.parseCarNames !== '';
   }
 
   // TODO: 정리해서 공부하기
@@ -38,5 +25,16 @@ export class CarNamesValidator {
       [!this.hasNoNumbers(), ERRORS.NUMBER_INPUT],
       [!this.isValidLength(), ERRORS.LENGTH_EXCEEDED],
     ];
+  }
+
+  validateCarNames(carNamesInput) {
+    this.carNamesInput = carNamesInput;
+    this.getParseCarNames();
+
+    this.getValidationChecks().forEach((arr) => {
+      if (arr[0]) throw new Error(arr[1]);
+    });
+
+    return true;
   }
 }

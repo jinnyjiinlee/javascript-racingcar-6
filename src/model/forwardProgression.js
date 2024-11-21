@@ -2,7 +2,7 @@ import { Console, Random } from '@woowacourse/mission-utils';
 
 export const progressRacing = (carNames, racingCount) => {
   const racingProgression = [];
-
+  
   for (const i in carNames) {
     racingProgression[i] = 0;
   }
@@ -15,12 +15,12 @@ export const progressRacing = (carNames, racingCount) => {
         racingProgression[i] += 1;
       }
     }
-
-    for (const i in carNames) {
-      Console.print(`${carNames[i]} : ${'-'.repeat(racingProgression[i])}`);
-    }
-    Console.print('');
   }
+
+  for (const i in carNames) {
+    Console.print(`${carNames[i]} : ${'-'.repeat(racingProgression[i])}`);
+  }
+  Console.print('');
 
   const MaxNumber = Math.max(...racingProgression);
 

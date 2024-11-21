@@ -4,7 +4,12 @@ export class RacingCountValidator {
   validateRacingCount(racingCountInput) {
     this.racingCount = racingCountInput;
 
-    this.getValidationChecks().forEach((arr) => {
+    const getValidationChecks = [
+      [!this.isNotEmpty(), ERRORS.NO_INPUT],
+      [!this.isNumber(), ERRORS.NO_NUMBER_INPUT],
+    ];
+
+    getValidationChecks.forEach((arr) => {
       if (arr[0]) throw new Error(arr[1]);
     });
   }
@@ -16,12 +21,5 @@ export class RacingCountValidator {
 
   isNotEmpty() {
     return this.racingCount !== '';
-  }
-
-  getValidationChecks() {
-    return [
-      [!this.isNotEmpty(), ERRORS.NO_INPUT],
-      [!this.isNumber(), ERRORS.NO_NUMBER_INPUT],
-    ];
   }
 }
