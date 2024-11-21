@@ -1,5 +1,5 @@
 import { CarNamesParser } from '../Model/carNamesParser.js';
-import { progressRacing } from '../Model/forwardProgression.js';
+import { racingHandler } from '../Model/forwardProgression.js';
 import { CarNamesValidator } from '../Validation/carNamesValidator.js';
 import { RacingCountValidator } from '../Validation/racingCountValidator.js';
 import { Input } from '../View/inputViews.js';
@@ -17,6 +17,6 @@ export class MainController {
     const racingCount = await this.input.getRacingCountInput();
     new RacingCountValidator().validateRacingCount(racingCount);
 
-    progressRacing(carNames, racingCount);
+    new racingHandler().progressRacing(carNames, racingCount);
   }
 }
