@@ -12,11 +12,11 @@ export class MainController {
   async startProgram() {
     const carNamesInput = await this.input.getCarNamesInput();
     new CarNamesValidator().validateCarNames(carNamesInput);
-    const carNames = new CarNamesParser().parseCarNames(carNamesInput);
+    const parsedCarNames = new CarNamesParser().parseCarNames(carNamesInput);
 
     const racingCount = await this.input.getRacingCountInput();
     new RacingCountValidator().validateRacingCount(racingCount);
 
-    new racingHandler().progressRacing(carNames, racingCount);
+    new racingHandler().progressRacing(parsedCarNames, racingCount);
   }
 }
