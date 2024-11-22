@@ -1,11 +1,6 @@
 import { ERRORS } from '../Constants/errorMessages.js';
-import { parseCarNames } from '../Model/carNamesParser.js';
 
 export class CarNamesValidator {
-  getParseCarNames() {
-    this.parseCarNames = parseCarNames(this.carNamesInput);
-  }
-
   // TODO: 트러블 슈팅 정리
   isEmpty() {
     return this.parseCarNames[0] === '';
@@ -44,9 +39,9 @@ export class CarNamesValidator {
     ];
   }
 
-  validateCarNames(carNamesInput) {
+  validateCarNames(carNamesInput, parsedCarNames) {
     this.carNamesInput = carNamesInput;
-    this.getParseCarNames();
+    this.parseCarNames = parsedCarNames;
 
     this.getValidationChecks().forEach((arr) => {
       if (arr[0]) throw new Error(arr[1]);

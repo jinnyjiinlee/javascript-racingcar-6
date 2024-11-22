@@ -14,10 +14,11 @@ export class MainController {
     this.output = new Output();
   }
 
+  // eslint-disable-next-line max-lines-per-function
   async initializeProgram() {
     const carNamesInput = await this.input.getCarNamesInput();
-    new CarNamesValidator().validateCarNames(carNamesInput);
     const parsedCarNames = parseCarNames(carNamesInput);
+    new CarNamesValidator().validateCarNames(carNamesInput, parsedCarNames);
 
     const racingCount = await this.input.getRacingCountInput();
     new RacingCountValidator().validateRacingCount(racingCount);
