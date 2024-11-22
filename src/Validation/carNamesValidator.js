@@ -31,6 +31,8 @@ export class CarNamesValidator {
     if (this.parseCarNames.length !== set.size) {
       return true;
     }
+
+    return false;
   }
 
   getValidationChecks() {
