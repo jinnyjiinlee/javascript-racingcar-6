@@ -1,4 +1,4 @@
-import { ERRORS } from '../Constants/errorMessages.js';
+import { ERROR_MESSAGES } from '../Constants/errorMessages.js';
 
 export class CarNamesValidator {
   // TODO: 트러블 슈팅 정리
@@ -32,11 +32,11 @@ export class CarNamesValidator {
 
   getValidationChecks() {
     return [
-      [this.isEmpty(), ERRORS.NO_INPUT],
-      [this.isStringNumeric(), ERRORS.ONLY_NUMBER_INPUT],
-      [this.hasNumericCharacters(), ERRORS.CONTAIN_NUMBER_INPUT],
-      [this.isValidLength(), ERRORS.LENGTH_EXCEEDED],
-      [this.isDuplicatedName(), ERRORS.DUPLICATION],
+      [this.isEmpty(), ERROR_MESSAGES.COMMON.NO_INPUT],
+      [this.isStringNumeric(), ERROR_MESSAGES.CAR_NAMES.ONLY_NUMBER_INPUT],
+      [this.hasNumericCharacters(), ERROR_MESSAGES.CAR_NAMES.CONTAIN_NUMBER_INPUT],
+      [this.isValidLength(), ERROR_MESSAGES.CAR_NAMES.LENGTH_EXCEEDED],
+      [this.isDuplicatedName(), ERROR_MESSAGES.CAR_NAMES.DUPLICATION],
     ];
   }
 

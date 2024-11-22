@@ -1,10 +1,10 @@
-import { ERRORS } from '../Constants/errorMessages.js';
+import { ERROR_MESSAGES } from '../Constants/errorMessages.js';
 
 export class RacingCountValidator {
   getValidationChecks() {
     return [
-      [this.isEmpty(), ERRORS.NO_INPUT],
-      [this.isNumber(), ERRORS.NO_NUMBER_INPUT],
+      [this.isEmpty(), ERROR_MESSAGES.COMMON.NO_INPUT],
+      [this.isNumeric(), ERROR_MESSAGES.RACE_COUNT.NO_NUMBER_INPUT],
     ];
   }
 
@@ -17,8 +17,8 @@ export class RacingCountValidator {
   }
 
   // TODO: 다시 공부
-  isNumber() {
-    return isNaN(this.racingCount);
+  isNumeric() {
+    return Number.isNaN(Number(this.racingCount));
   }
 
   isEmpty() {
