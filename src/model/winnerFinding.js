@@ -1,4 +1,5 @@
 export const findWinners = (racingProgression) => {
+  // console.log('racingProgression: ', racingProgression)
   const MaxNumber = Math.max(...racingProgression);
 
   const findIndexArray = racingProgression
