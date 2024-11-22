@@ -6,13 +6,13 @@ export class CarNamesValidator {
     return this.parseCarNames[0] === '';
   }
 
-  // isEmpty() {
-  //   return this.parseCarNames === '';
-  // }
+  isStringNumeric() {
+    return this.parseCarNames.some((carName) => !Number.isNaN(Number(carName)));
+  }
 
   // TODO: 정리해서 공부하기 every 가 아니라 some
-  hasNumbers() {
-    return this.parseCarNames.some((carName) => !isNaN(Number(carName)));
+  hasNumericCharacters() {
+    return this.parseCarNames.some((carName) => /\d/.test(carName));
   }
 
   isValidLength() {
@@ -33,7 +33,8 @@ export class CarNamesValidator {
   getValidationChecks() {
     return [
       [this.isEmpty(), ERRORS.NO_INPUT],
-      [this.hasNumbers(), ERRORS.NUMBER_INPUT],
+      [this.isStringNumeric(), ERRORS.ONLY_NUMBER_INPUT],
+      [this.hasNumericCharacters(), ERRORS.CONTAIN_NUMBER_INPUT],
       [this.isValidLength(), ERRORS.LENGTH_EXCEEDED],
       [this.isDuplicatedName(), ERRORS.DUPLICATION],
     ];
