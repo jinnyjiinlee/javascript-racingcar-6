@@ -1,13 +1,6 @@
 import { ERROR_MESSAGES } from '../Constants/errorMessages.js';
 
 export class RacingCountValidator {
-  getValidationChecks() {
-    return [
-      [this.isEmpty(), ERROR_MESSAGES.COMMON.NO_INPUT],
-      [this.isNumeric(), ERROR_MESSAGES.RACE_COUNT.NO_NUMBER_INPUT],
-    ];
-  }
-
   validateRacingCount(racingCountInput) {
     this.racingCount = racingCountInput;
 
@@ -16,12 +9,19 @@ export class RacingCountValidator {
     });
   }
 
-  // TODO: 다시 공부
-  isNumeric() {
-    return Number.isNaN(Number(this.racingCount));
+  getValidationChecks() {
+    return [
+      [this.isEmpty(), ERROR_MESSAGES.COMMON.NO_INPUT],
+      [this.isNumeric(), ERROR_MESSAGES.RACE_COUNT.NO_NUMBER_INPUT],
+    ];
   }
 
   isEmpty() {
     return this.racingCount === '';
+  }
+
+  // TODO: 다시 공부
+  isNumeric() {
+    return Number.isNaN(Number(this.racingCount));
   }
 }

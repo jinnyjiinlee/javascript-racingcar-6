@@ -1,14 +1,14 @@
-const findIndexArray = (MaxNumber, racingProgression) =>
+const findWinnerIndex = (RaceMaxNumber, racingProgression) =>
   racingProgression
     .map((item, index) => {
-      if (item === MaxNumber) return index;
+      if (item === RaceMaxNumber) return index;
       return -1;
     })
     .filter((item) => item !== -1);
 
 export const findWinners = (racingProgression) => {
-  const MaxNumber = Math.max(...racingProgression);
-  const winnersIndex = findIndexArray(MaxNumber, racingProgression);
+  const RaceMaxNumber = Math.max(...racingProgression);
+  const winnersIndex = findWinnerIndex(RaceMaxNumber, racingProgression);
 
   return winnersIndex;
 };

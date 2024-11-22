@@ -1,6 +1,17 @@
 import { ERROR_MESSAGES } from '../Constants/errorMessages.js';
 
 export class CarNamesValidator {
+  validateCarNames(carNamesInput, parsedCarNames) {
+    this.carNamesInput = carNamesInput;
+    this.parseCarNames = parsedCarNames;
+
+    this.getValidationChecks().forEach((arr) => {
+      if (arr[0]) throw new Error(arr[1]);
+    });
+
+    return true;
+  }
+  
   // TODO: 트러블 슈팅 정리
   isEmpty() {
     return this.parseCarNames[0] === '';
@@ -40,14 +51,5 @@ export class CarNamesValidator {
     ];
   }
 
-  validateCarNames(carNamesInput, parsedCarNames) {
-    this.carNamesInput = carNamesInput;
-    this.parseCarNames = parsedCarNames;
 
-    this.getValidationChecks().forEach((arr) => {
-      if (arr[0]) throw new Error(arr[1]);
-    });
-
-    return true;
-  }
 }
