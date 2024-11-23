@@ -1,7 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 import { MESSAGE } from '../Constants/messages.js';
 
-export class Output {
+export class OutputHandler {
   printRaceStatus(carNames, racingProgression) {
     Console.print(MESSAGE.EXECUTION_RESULT);
 

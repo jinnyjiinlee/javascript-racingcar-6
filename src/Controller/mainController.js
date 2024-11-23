@@ -1,5 +1,5 @@
-import { Input } from '../View/inputView.js';
-import { Output } from '../View/outputView.js';
+import { InputHandler } from '../View/inputView.js';
+import { OutputHandler } from '../View/outputView.js';
 
 import { parseCarNames } from '../Model/carNamesParser.js';
 import { RacingHandler } from '../Model/forwardProgression.js';
@@ -10,8 +10,8 @@ import { RacingCountValidator } from '../Validation/racingCountValidator.js';
 
 export class MainController {
   constructor() {
-    this.input = new Input();
-    this.output = new Output();
+    this.input = new InputHandler();
+    this.output = new OutputHandler();
   }
 
   // eslint-disable-next-line max-lines-per-function
